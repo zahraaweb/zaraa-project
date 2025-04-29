@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content=="width=device-width"initial-scale=1.0">
+  <meta name="viewport" content="width=device-width"initial-scale=1.0">
   <title>Dari zahra untuk zahra</title>
   <style>
     body { 
@@ -89,6 +89,44 @@
       </div>
       <button-class="btn"   id="noBtn">Im-over-it</button> 
     </div>
+    <div id="finalScreen">
+      <h2>Terimakasih karna tidak menyerah, terimakasih sudah mau mencoba lagi dan lagi. Hidup bukan perihal siapa yang lebih dulu, tapi siapa yang bisa bertahan dan berkembang.</h2>
+      <img id="capturedImage" src="" alt="This is you who never give up" />
+    </div>
     
-      
+    <canvas id="confettiCanvas"
+  class="confetti"></canvas>
   
+    <script>
+      const yesBtn = document.getElementByld('yesBtn');
+      const noBtn = document.getElementByld('noBtn');
+      const finalScreen = document.getElementByld('finalScreen');
+      const capturedImage = document.getElementByld('capturedImage');
+      const buttonContainer = document.getElementByld('button-container');
+      const confettiCanvas = document.getElementByld('confettiCanvas');
+      const confettiCtx = confettiCanvas.getContext('2d');
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+      
+      let yesSize = 1;
+      const noText = [
+        "yaaah kenapa nyerah?",
+        "yakin ga di coba lagi?",
+        "kamu udah sejauh ini masa mau nyerah",
+        "coba pikirin lagi deh..",
+        "bisa jadi",
+        "kalo hidup jalan nya lurus mulu enak dong",
+        "sayang banget kalo nyerah gitu aja",
+        "kasi diri kmu kesempatan untuk bangkit",
+        "please dipikirin lagi yaa..",
+        "masa depan yang baik memang sulit di gapai",
+        "coba pikirin kenapa kmu bisa sampe sejauh ini?",
+        "ayoo dong bangkit"
+        "okee, aku (diri kmu yang lain) selalu disini, siap untuk bangkit lagi"
+    ];
+    
+    noBtn.addEventListener('click', () => {
+      yesSize += 0.3;
+      yesBtn.style.transform = scale(${yesSize});
+      
+      
