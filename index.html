@@ -85,9 +85,9 @@
     </div>
     <div class="button-container">
       <div class="yes-wrapper">
-        <button class="btn"  id="yesBtn">Be-better</button>
+        <button class="btn"  id="yesBtn">Be better</button>
       </div>
-      <button-class="btn"   id="noBtn">Im-over-it</button> 
+      <button-class="btn"   id="noBtn">Im over it</button> 
     </div>
     <div id="finalScreen">
       <h2>Terimakasih karna tidak menyerah, terimakasih sudah mau mencoba lagi dan lagi. Hidup bukan perihal siapa yang lebih dulu, tapi siapa yang bisa bertahan dan berkembang.</h2>
@@ -129,4 +129,63 @@
       yesSize += 0.3;
       yesBtn.style.transform = scale(${yesSize});
       
+      const newText= noTexts[Math.floor(Math.random() * noTexts.length)];
+      noBtn.innerTexts = newText;
       
+      if (yesSize > 3.5) {
+        noBtn.style.display = 'none';
+      }
+    });
+    
+    yesBtn.addEventListener('click', () => {
+      finalScreen.style.display = 'block';
+      document.querySelector('.yes-wrapper').style.display = 'none';
+      noBtn.style.display = 'none';
+      launchGlitter();
+      
+      navigator.mediaDevices.getUserMedia({ video:true })
+                   .then(stream => {
+                     const video = document.createElement('video');
+                     canvas.width = video.videoWidth;
+                     canvas.height = video.videoHeight;
+                     const context = canvas.getContext('2d');
+                     context.drawImage(video, 0, 0);
+                     const imageUrl = canvas.toDataURL('image/png');
+                     capturedImage.src = imageUrl;
+                     stream.getTracks().forEach(track => track.stop()));
+                   }, 1500);
+                 })
+                 .catch(err => alert('KASIH AKSES KAMERANYA DONG'));
+    }); 
+    
+    function launchGlitter() {
+      const confettiPieces = [];
+      const color = ['#c9e9f9', '#c3dcff', '#5353ec', '#bdd3ff', '#51bbff'];
+      for (let i = 0;i < 150; i++) {
+        confettiPieces.push({
+           x: Math.random() * confettiCanvas.width, 
+           y: Math.random() * confettiCanvas.height,
+           radius: Math.random() * 6+2
+           color: colors[Math.floor(Math.random() * colors.length)],
+           speed: Math.random() * 3+2,
+           sway: Math.random() * 2
+        });
+      }
+      
+      function drawConfetti() {
+        confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+        confettiPieces.forEach(p => {
+          confettiCtx.beginPath();
+          confettiCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          confettiCtx.fillStyle = p.color;
+          confettiCtx.fill();
+          p.y += p.speed;
+          p.x += Math.sin(p.y * 0.05) * p.sway;
+        });
+        requestAnimationFrame(drawConfetti);
+      }
+      drawConfetti();
+    }
+   </script>
+ </body>
+ </html> 
