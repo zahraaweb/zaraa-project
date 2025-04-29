@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+<body>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width"initial-scale=1.0">
-  <title>Dari zahra untuk zahra</title>
+  <title>Ada surat untukmu</title>
   <style>
     body { 
       font-family: 'Times New Roman', cursive;
@@ -188,4 +189,21 @@
     }
    </script>
  </body>
- </html> 
+ 
+ <div id="page2">
+  <h1>Klik Amplop Ini!</h1>
+  <div class="envelope" onclick="openEnvelope()"></div>
+  <div class="letter">
+    <button onclick="goToPage2()">Buka Pilihan Surat</button>
+  </div>
+</div>
+
+<div id="page2" style="display:none;">
+  <h1>Pilih Salah Satu Surat!</h1>
+  <div>
+    <div class="small-envelope" onclick="chooseLetter('Kamu akan mendapatkan kejutan manis minggu ini!')"></div>
+    <div class="small-envelope" onclick="chooseLetter('Seseorang diam-diam memperhatikanmu dengan kagum.')"></div>
+    <div class="small-envelope" onclick="chooseLetter('Kesempatan besar sedang mendekat, tetap semangat!')"></div>
+  </div>
+  <div id="message" class="message"></div>
+</div>
